@@ -21,7 +21,8 @@ public class MouseController : MonoBehaviour
     private uint coins = 0;
     //UI
     public TMP_Text coinsCollectedLabel;
-    public Button restartButton;
+    public GameObject restartDialog;
+
     //sound
     public AudioClip coinCollectSound;
     public AudioSource jetpackAudio;
@@ -37,6 +38,7 @@ public class MouseController : MonoBehaviour
     {
         playerRigidbody = GetComponent<Rigidbody2D>();
         mouseAnimator = GetComponent<Animator>();
+        restartDialog.SetActive(false);
     }
     void FixedUpdate()
     {
@@ -57,7 +59,7 @@ public class MouseController : MonoBehaviour
 
         if (isDead && isGrounded)
         {
-            restartButton.gameObject.SetActive(true);
+            restartDialog.SetActive(true);
         }
 
 
@@ -150,6 +152,11 @@ public class MouseController : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene("RocketMouse");
+    }
+
+    public void ExitToMenu()
+    {
+        SceneManager.LoadScene("MenuScene");
     }
 
 }
